@@ -27,10 +27,15 @@ $subscribers=@(
 
 $locations = @(
 @('3747','Plaza One'),
-@('3743','Plaza Three')
+@('3743','Plaza Three'),
+@('3742','Rings Rd')
 )
 
 $restaurants = @(
+'Panda Express',
+'Tavolino Pasta Bar',
+'Short North Bagel',
+'Hot Heads',
 'Broad Street Philly''s',
 'Claddagh',
 'Zoca',
@@ -52,6 +57,7 @@ $restaurants = @(
 )
 
 # Be sure to enable this for gmail accounts: https://www.google.com/settings/security/lesssecureapps.  System.Net.Mail.SmtpClient sucks.
+# This only needs to be enabled for the SENDING gmail account that is specfied by the u/p below.  The subscribers do *not* need to enable this.
 $SMTPServer = "smtp.gmail.com"
 $SMTPPort = "587"
 $Username = "sendingGmailAccount@gmail.com"
@@ -92,8 +98,8 @@ function GetMsg ($locations)
     {
         log INFO "  getMsg: STARTED"
         $msg = ""
-        $today = Get-Date -Format "dddd,MMMM dd,yyyy"
-        #$today = (get-date).AddDays(2).ToString("dddd,MMMM dd,yyyy") #use this line instead when testing/debugging on days when there is no menu
+        $today = Get-Date -Format "dddd,MMMM d,yyyy"
+        #$today = (get-date).AddDays(2).ToString("dddd,MMMM d,yyyy") #use this line instead when testing/debugging on days when there is no menu
         $found = $false
 
         foreach ($location in $locations)
